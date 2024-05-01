@@ -4,7 +4,8 @@
  */
 
 if (typeof systemBackgroundColor === 'undefined') {
-    var systemBackgroundColor = "#e3eded";
+    //var systemBackgroundColor = "#e3eded";
+    var systemBackgroundColor = "#ffe898";
 }
 
 if (typeof systemLineColor === 'undefined') {
@@ -26,7 +27,7 @@ let soloIsAnimating = false;
 let soloNumAnimationFrames = 30;
 let soloCurAnimationFrame = 0;
 
-let debugBox = false;
+let debugBox = true;
 
 // Handy string of all letters available
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?";

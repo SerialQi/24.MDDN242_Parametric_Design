@@ -36,13 +36,17 @@ const darkGreen  = "#26b29d";
 const lightGreen  = "#30dfc4";
 const strokeColor  = "#0a2d27";
 
+const blue = color("#577a90")
+const yellow  = color("#f7da30")
+const orange  = color("#f7803f")
+
 function setup () {
   // create the drawing canvas, save the canvas element
   main_canvas = createCanvas(canvasWidth, canvasHeight);
   main_canvas.parent('canvasContainer');
 
   // color/stroke setup
-  stroke(strokeColor);
+  noStroke();
   strokeWeight(4);
 
   // with no animation, redrawing the screen is not necessary
@@ -51,7 +55,7 @@ function setup () {
 
 function draw () {
   // clear screen
-  background(backgroundColor);
+  background("#577a90");
 
   // compute the center of the canvas
   let center_x = canvasWidth / 2;
@@ -70,9 +74,9 @@ function drawLetter(posx, posy, letterData) {
   let pos2y = posy + letterData["offsety"];
 
   // draw two circles
-  fill(darkGreen);
+  fill("#f7da30");
   ellipse(posx, posy, 150, 150);
-  fill(lightGreen);
+  fill("#f7803f");
   ellipse(pos2x, pos2y, size2, size2);
 }
 
