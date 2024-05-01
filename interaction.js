@@ -27,7 +27,7 @@ let soloIsAnimating = false;
 let soloNumAnimationFrames = 30;
 let soloCurAnimationFrame = 0;
 
-let debugBox = true;
+let debugBox = false;
 
 // Handy string of all letters available
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?";

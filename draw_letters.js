@@ -1,8 +1,10 @@
 /* these are optional special variables which will change the system */
-// var systemBackgroundColor = "#ffc8b6";
+ var systemBackgroundColor = "#34B1D2";
+
+//Color may use"#34B1D2" "#CEECF6" "#E3B687" "#BBFF00" "#C73869"
 
 var systemLineColor = "#577a90";
-var systemBoxColor = "#C73869";
+var systemBoxColor = "#CEECF6";
 
 /* internal constants */
 const orange  = "#f7803f";
@@ -20,7 +22,6 @@ const yellow  = color("#f7da30")
  * from (0,0) to (100, 200)
  */
 
-
 //angleMode(DEGREES)
 
 function drawLetter(letterData) {
@@ -28,7 +29,6 @@ function drawLetter(letterData) {
   noStroke();
   strokeWeight(4);
 
-  // determine parameters for second circle
   //first circle 
   let size = letterData["circle1size"];
   let orangex = 50  + letterData["circle1x"]; //circle1x
@@ -66,11 +66,11 @@ function drawLetter(letterData) {
   let myYellow = color("#f7da30")
   let myOrange = color ("#f7803f")
 
-  //let fillOY = lerpColor( myOrange,myYellow,0)
+  //lerpcolor
   let fill1 = lerpColor( myYellow,myOrange,colorVariability1)
   let fill2 = lerpColor( myBlue,myYellow,colorVariability2)
   
- //circle 1
+  //circle 1
   fill(fill1);
   ellipse(orangex, orangey, size, size);
 
@@ -78,15 +78,14 @@ function drawLetter(letterData) {
    fill("#577a90");
    ellipse(circle2x, circle2y, circle2Size, circle2Size);
 
-   
-//triangle
+
+   //triangle
   fill(orange)
     push();
     translate(triangle1x, triangle1y);
     rotate(letterData["rotationAngle"]); 
     triangle(-triangle1Size / 2, 0, triangle1Size / 2, 0, 0, triangle1Size/2); //THIS TRIANGLE CODE IS USED AI TO HELP.
     pop();
- // triangle(30, 75, 58, 50, 86, 75);
 
    ////triangle 2
    fill("#f7da30")
@@ -105,12 +104,15 @@ function drawLetter(letterData) {
   rect(20,63,rect2Size,15)
   fill("#577a90");
   rect(37,100,rect3Size,15)
-
-
 }
 
 function interpolate_letter(percent, oldObj, newObj) {
   let new_letter = {};
+  let old_circle1size = oldObj["circle1size"];
+  let new_circle1size = newObj["circle1size"];
+  if (old_circle1size > new_circle1size) {
+    new_circle1size = new_circle1size + 360;
+  }
   new_letter["circle1size"] = map(percent, 0, 100, oldObj["circle1size"], newObj["circle1size"]);
   new_letter["circle1x"] = map(percent, 0, 100, oldObj["circle1x"], newObj["circle1x"]);
   new_letter["circle1y"] = map(percent, 0, 100, oldObj["circle1y"], newObj["circle1y"]);
@@ -127,9 +129,20 @@ function interpolate_letter(percent, oldObj, newObj) {
   new_letter["rotationAngle"] = map(percent, 0, 100, oldObj["rotationAngle"], newObj["rotationAngle"]);
   new_letter["rect2Size"] = map(percent, 0, 100, oldObj["rect2Size"], newObj["rect2Size"]);
   new_letter["triangle2Size"] = map(percent, 0, 100, oldObj["triangle2Size"], newObj["triangle2Size"]);
-  //new_letter["triangle2x"] = map(percent, 0, 100, oldObj["triangle2x"], newObj["triangle2x"]);
-  //new_letter["triangle2y"] = map(percent, 0, 100, oldObj["triangle2y"], newObj["triangle2y"]);
   new_letter["rotationAngle2"] = map(percent, 0, 100, oldObj["rotationAngle2"], newObj["rotationAngle2"]);
+
+  if(newObj["triangle2Size"] == 0 ){
+    new_letter["triangle2Size"] = newObj["triangle2Size"]
+  }
+
+  if(newObj["triangle1Size"] == 0 ){
+    new_letter["triangle1Size"] = newObj["triangle1Size"]
+  }
+
+  if(oldObj["triangle1Size"] == 0 ){
+    new_letter["triangle1x"] = newObj["triangle1x"]
+    new_letter["triangle1y"] = newObj["triangle1y"]
+  }
   return new_letter;
 
 }

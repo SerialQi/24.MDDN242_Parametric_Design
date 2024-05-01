@@ -176,7 +176,7 @@ const alphabet = {
     "rect1y": 50,
     "triangle1Size": 53,
     "triangle1x": 67.79999999999998,
-    "triangle1y": 128,
+    "triangle1y": 130,
     "rotationAngle": 18.05,
     "rect2Size": 0,
     "rect3Size": 49.4,
